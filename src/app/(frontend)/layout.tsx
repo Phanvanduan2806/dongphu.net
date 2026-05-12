@@ -15,6 +15,7 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { Toaster } from 'sonner'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -38,6 +39,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
           <Footer />
         </Providers>
+        <Toaster
+          position="bottom-center"
+          richColors
+          toastOptions={{
+            style: {
+              borderRadius: '9999px',
+              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(255,255,255,0.06)',
+              backdropFilter: 'blur(10px)',
+              padding: '12px 16px',
+              fontSize: '13px',
+            },
+          }}
+        />
       </body>
     </html>
   )

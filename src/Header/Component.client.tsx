@@ -24,14 +24,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     <header
       className="
         sticky top-0 z-50
-
         h-[70px]
-
         border-b
         border-border/60
-
         bg-background/70
-
         backdrop-blur-xl
       "
       {...(headerTheme ? { 'data-theme': headerTheme } : {})}

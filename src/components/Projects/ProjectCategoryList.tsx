@@ -23,7 +23,7 @@ export default function ProjectCategoryList({ categories, active, onSelect }: Pr
       className="
         flex flex-wrap
 
-        gap-2
+        gap-1
         md:gap-3
 
         w-full
@@ -52,10 +52,11 @@ export default function ProjectCategoryList({ categories, active, onSelect }: Pr
 
               overflow-hidden
 
-              rounded-sm
+              rounded-lg
+              md:rounded-xl
               border
 
-              px-2 py-2
+              px-2.5 py-2
               md:px-4 md:py-2.5
 
               transition-all
@@ -180,6 +181,7 @@ export default function ProjectCategoryList({ categories, active, onSelect }: Pr
 
                     text-zinc-500
                     dark:text-zinc-400
+                    leading-none
                   "
                 >
                   {item.count || 0} mục
