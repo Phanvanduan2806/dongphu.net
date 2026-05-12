@@ -14,6 +14,9 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+// New collection imports go here
+import { Project } from './collections/Projects/Project'
+import { ProjectCategories } from './collections/Projects/ProjectCategories'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -62,7 +65,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Project, ProjectCategories],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins,

@@ -22,6 +22,15 @@ type LinkType = (options?: {
 }) => Field
 
 export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+  const linkIcon: Field = {
+    name: 'icon',
+    type: 'text',
+    label: 'Icon (Lucide)',
+    admin: {
+      width: '20%',
+      placeholder: 'House, Phone, User...',
+    },
+  }
   const linkResult: GroupField = {
     name: 'link',
     type: 'group',
@@ -94,7 +103,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       ...linkType,
       admin: {
         ...linkType.admin,
-        width: '50%',
+        width: '40%',
       },
     }))
 
@@ -106,11 +115,12 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           name: 'label',
           type: 'text',
           admin: {
-            width: '50%',
+            width: '40%',
           },
           label: 'Label',
           required: true,
         },
+        linkIcon,
       ],
     })
   } else {

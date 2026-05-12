@@ -18,12 +18,12 @@ export const Logo = (props: Props) => {
     <img
       alt="Payload Logo"
       width={193}
-      height={34}
+      height={48}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-logo-light.svg"
+      className={clsx('max-w-[9.375rem] w-full h-[48px]', className)}
+      src="/api/media/file/logo-dong-phu.webp"
     />
   )
 }

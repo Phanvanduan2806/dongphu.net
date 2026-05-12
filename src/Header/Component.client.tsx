@@ -1,4 +1,5 @@
 'use client'
+
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -8,35 +9,77 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { Menu, X } from 'lucide-react'
+import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 
 interface HeaderClientProps {
   data: Header
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
+  const [open, setOpen] = useState(false)
+
   useEffect(() => {
     setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   useEffect(() => {
     if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+    <header
+      className="
+        sticky top-0 z-50
+
+        h-[70px]
+
+        border-b
+        border-border/60
+
+        bg-background/70
+
+        backdrop-blur-xl
+      "
+      {...(theme ? { 'data-theme': theme } : {})}
+    >
+      <div className="container h-full flex items-center justify-between">
+        {/* LOGO */}
+        <Link href="/" className="flex items-center">
+          <Logo loading="eager" priority="high" className="dark:brightness-0 dark:invert" />
         </Link>
-        <HeaderNav data={data} />
+
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex flex-1 justify-center">
+          <HeaderNav data={data} />
+        </div>
+
+        {/* RIGHT ACTIONS */}
+        <div className="flex items-center gap-2">
+          <ThemeSelector />
+
+          {/* MOBILE BUTTON */}
+          <button
+            className="md:hidden p-2 rounded-xl hover:bg-muted transition"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
+
+      {/* MOBILE */}
+      {open && (
+        <div className="md:hidden border-t bg-background">
+          <div className="container py-4">
+            <HeaderNav data={data} />
+          </div>
+        </div>
+      )}
     </header>
   )
 }
