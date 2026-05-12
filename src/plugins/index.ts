@@ -14,7 +14,9 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  if (!doc?.title) return 'DP Digital | Thiết kế website & giải pháp công nghệ'
+
+  return `${doc.title} | DP Digital`
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {

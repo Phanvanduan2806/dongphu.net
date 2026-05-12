@@ -83,6 +83,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Search`,
+    title: `Search | DP Digital`,
+    description: 'Tìm kiếm nội dung trên DP Digital',
   }
 }
