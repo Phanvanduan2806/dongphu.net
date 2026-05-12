@@ -86,8 +86,8 @@ export const Project: CollectionConfig<'projects'> = {
               label: false,
               required: true,
               editor: lexicalEditor({
-                features: ({ rootFeatures }) => [
-                  ...rootFeatures,
+                features: ({ defaultFeatures }) => [
+                  ...defaultFeatures,
                   HeadingFeature({
                     enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'],
                   }),

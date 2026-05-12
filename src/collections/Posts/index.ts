@@ -85,9 +85,9 @@ export const Posts: CollectionConfig<'posts'> = {
               name: 'content',
               type: 'richText',
               editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
+                features: ({ defaultFeatures }) => {
                   return [
-                    ...rootFeatures,
+                    ...defaultFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
                     BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
                     FixedToolbarFeature(),

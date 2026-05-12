@@ -2,8 +2,7 @@
 
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
@@ -17,19 +16,9 @@ interface HeaderClientProps {
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  const [theme, setTheme] = useState<string | null>(null)
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const pathname = usePathname()
+  const { headerTheme } = useHeaderTheme()
 
   const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    setHeaderTheme(null)
-  }, [pathname])
-
-  useEffect(() => {
-    if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-  }, [headerTheme])
 
   return (
     <header
@@ -45,7 +34,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
         backdrop-blur-xl
       "
-      {...(theme ? { 'data-theme': theme } : {})}
+      {...(headerTheme ? { 'data-theme': headerTheme } : {})}
     >
       <div className="container h-full flex items-center justify-between">
         {/* LOGO */}
