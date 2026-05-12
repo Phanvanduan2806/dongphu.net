@@ -135,7 +135,7 @@ export default function HeroBanner() {
             </RootButton>
 
             <RootButton
-              href="/showcase"
+              href="/projects"
               variant="secondary"
               icon={<Squares2X2Icon className="h-5 w-5" />}
               className="
