@@ -45,7 +45,9 @@ export default async function ProjectDetail({ params }: Props) {
     <div className="container py-20">
       {/* ================= TITLE ================= */}
       <div className="mb-10 space-y-4">
-        <h1 className="text-3xl font-bold">{project.title}</h1>
+        <h1 className="text-3xl font-bold text-zinc-900 dark:text-white transition-colors">
+          {project.title}
+        </h1>
       </div>
 
       {/* ================= GRID ================= */}
@@ -63,17 +65,28 @@ export default async function ProjectDetail({ params }: Props) {
                   key={i}
                   value={`item-${i}`}
                   className="
-                    border rounded-xl
-                    bg-white shadow-sm
+                    border
+                    border-zinc-200 dark:border-zinc-800
+                    rounded-2xl
+                    bg-white dark:bg-zinc-900
+                    shadow-sm dark:shadow-black/20
                     px-4
+                    transition-colors
                   "
                 >
-                  <AccordionTrigger className="text-left font-medium text-base">
+                  <AccordionTrigger
+                    className="
+                      text-left
+                      font-medium
+                      text-base
+                      text-zinc-800 dark:text-zinc-100
+                    "
+                  >
                     {item.label || `Hình ${i + 1}`}
                   </AccordionTrigger>
 
                   <AccordionContent className="pt-4">
-                    <div className="rounded-xl overflow-hidden">
+                    <div className="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
                       <Media resource={item.image} size="100vw" />
                     </div>
                   </AccordionContent>
@@ -91,9 +104,39 @@ export default async function ProjectDetail({ params }: Props) {
 
       {/* ================= CONTENT ================= */}
       {project.content && (
-        <div className="bg-white border rounded-2xl p-6 md:p-10 shadow-sm">
+        <div
+          className="
+            bg-white dark:bg-zinc-900
+            border border-zinc-200 dark:border-zinc-800
+            rounded-2xl
+            p-6 md:p-10
+            shadow-sm dark:shadow-black/20
+            transition-colors
+          "
+        >
           <ScrollArea className="h-[calc(100vh-200px)] pr-4">
-            <div className="prose dark:prose-invert max-w-none">
+            <div
+              className="
+                prose
+                prose-zinc
+                dark:prose-invert
+                max-w-none
+
+                prose-headings:text-zinc-900
+                dark:prose-headings:text-white
+
+                prose-p:text-zinc-700
+                dark:prose-p:text-zinc-300
+
+                prose-strong:text-zinc-900
+                dark:prose-strong:text-white
+
+                prose-li:text-zinc-700
+                dark:prose-li:text-zinc-300
+
+                prose-a:text-primary
+              "
+            >
               <RichText data={project.content} />
             </div>
           </ScrollArea>
