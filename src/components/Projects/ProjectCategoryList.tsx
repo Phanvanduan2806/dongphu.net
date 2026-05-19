@@ -24,7 +24,6 @@ export default function ProjectCategoryList({ categories, active, onSelect }: Pr
         flex flex-wrap
 
         gap-1
-        md:gap-3
 
         w-full
         relative
