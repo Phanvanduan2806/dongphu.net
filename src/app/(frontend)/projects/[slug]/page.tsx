@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import { notFound } from 'next/navigation'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -14,6 +16,7 @@ import RichText from '@/components/RichText'
 import { ProjectCard } from '@/components/Projects/ProjectCard'
 
 import { getProjects } from '@/utilities/getProjects'
+import { generateMeta } from '@/utilities/generateMeta'
 
 import type { Project } from '@/payload-types'
 
@@ -22,6 +25,39 @@ type Props = {
     slug: string
   }>
 }
+
+/* ================= SEO ================= */
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+
+  const projects = (await getProjects({
+    limit: 1,
+    slug,
+  })) as Project[]
+
+  const project = projects?.[0]
+
+  if (!project) {
+    return {}
+  }
+
+  return generateMeta({
+    doc: {
+      slug: `projects/${project.slug}`,
+
+      meta: {
+        title: project.meta?.title,
+
+        description:
+          project.meta?.description ||
+          `Khám phá dự án ${project.title} được phát triển bởi đội ngũ Đông Phú Digital với giao diện hiện đại, tối ưu SEO, trải nghiệm người dùng mượt mà và hiệu năng cao bằng công nghệ Next.js cùng Payload CMS trên mọi thiết bị.`,
+      },
+    },
+  })
+}
+
+/* ================= PAGE ================= */
 
 export default async function ProjectDetail({ params }: Props) {
   // ================= PARAMS =================

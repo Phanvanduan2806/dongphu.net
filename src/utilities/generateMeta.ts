@@ -29,7 +29,7 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title
-    ? `${doc.meta.title} | DP Digital`
+    ? `${doc.meta.title}`
     : 'Đông Phú Digital | Thiết kế website chuẩn SEO hiện đại'
 
   const description =
@@ -52,17 +52,17 @@ export const generateMeta = async (args: {
       'nextjs',
       'payload cms',
       'web development',
-      'DP Digital',
+      'Đông Phú Digital',
     ],
 
     authors: [
       {
-        name: 'DP Digital',
+        name: 'Đông Phú Digital',
       },
     ],
 
-    creator: 'DP Digital',
-    publisher: 'DP Digital',
+    creator: 'Đông Phú Digital',
+    publisher: 'Đông Phú Digital',
 
     robots: {
       index: true,
