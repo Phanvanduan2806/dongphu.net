@@ -28,10 +28,13 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title ? `${doc.meta.title} | DP Digital` : 'DP Digital'
+  const title = doc?.meta?.title
+    ? `${doc.meta.title} | DP Digital`
+    : 'Đông Phú Digital | Thiết kế website chuẩn SEO hiện đại'
 
   const description =
-    doc?.meta?.description || 'DP Digital chuyên thiết kế website hiện đại, tối ưu SEO và UI/UX.'
+    doc?.meta?.description ||
+    'Đông Phú Digital cung cấp giải pháp thiết kế website hiện đại, tối ưu SEO và trải nghiệm người dùng, giúp doanh nghiệp xây dựng thương hiệu số chuyên nghiệp.'
 
   const slug = typeof doc?.slug === 'string' && doc.slug !== 'home' ? `/${doc.slug}` : ''
 
