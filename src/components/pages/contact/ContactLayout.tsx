@@ -43,7 +43,23 @@ export default function ContactPage() {
 
   return (
     <Section.Root className="py-24">
-      <div className="grid lg:grid-cols-12 gap-12 items-start">
+      {/* GLOW (only inside form) */}
+      <div
+        className="
+                pointer-events-none
+                absolute
+                top-0
+                -translate-y-1/2
+    left-1/2
+    -translate-x-1/2
+                h-100 w-100
+                rounded-full
+                bg-primary/20
+                blur-3xl
+                opacity-70
+              "
+      />
+      <div className="grid lg:grid-cols-12 gap-12 items-end">
         {/* ================= LEFT ================= */}
         <div className="lg:col-span-5 space-y-8">
           <div>
@@ -57,8 +73,8 @@ export default function ContactPage() {
           <div className="space-y-3">
             {[
               { icon: MapPin, text: 'Da Nang, Viet Nam' },
-              { icon: Mail, text: 'contact@yourdomain.com' },
-              { icon: Phone, text: '0900 xxx xxx' },
+              { icon: Mail, text: 'dongphudigital@gmail.com' },
+              { icon: Phone, text: '0386037677' },
             ].map((item, i) => {
               const Icon = item.icon
               return (
@@ -127,21 +143,6 @@ export default function ContactPage() {
               shadow-xl
             "
           >
-            {/* GLOW (only inside form) */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                -top-24
-                -right-24
-                h-72 w-72
-                rounded-full
-                bg-primary/20
-                blur-3xl
-                opacity-70
-              "
-            />
-
             <div className="relative z-10 space-y-6">
               <FloatingInput
                 icon={User}

@@ -178,7 +178,7 @@ export default function CtaBanner({
 
             {/* Actions */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <RootButton href="/lien-he">Bắt đầu ngay</RootButton>
+              <RootButton href="/contact">Bắt đầu ngay</RootButton>
               <RootButton href="/projects" variant="secondary">
                 Xem dự án
               </RootButton>

@@ -133,7 +133,7 @@ export const ProjectCard: React.FC<Props> = ({
             <Tooltip>
               <TooltipTrigger asChild>
                 {isDetail ? (
-                  <Link href="/lien-he" className="w-full">
+                  <Link href="/contact" className="w-full">
                     <Button
                       variant="ghost"
                       className="w-full h-9 rounded-lg justify-center text-muted-foreground hover:text-foreground hover:bg-primary/10"

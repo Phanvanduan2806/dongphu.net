@@ -239,8 +239,8 @@ export default function ProjectPageClient({ initialData }: Props) {
             Danh mục đề xuất
           </span>
 
-          <div className="flex flex-wrap gap-2">
-            {categories.slice(0, 6).map((c) => {
+          <div className="flex flex-wrap gap-1">
+            {categories.slice(0, 4).map((c) => {
               const active = category === c.slug
 
               return (
@@ -248,45 +248,45 @@ export default function ProjectPageClient({ initialData }: Props) {
                   key={c.slug}
                   onClick={() => setCategory(active ? 'all' : c.slug)}
                   className={`
-                px-4 py-2.5
+          px-3 py-1.5
 
-                rounded-2xl
+          rounded-xl
 
-                border
+          border
 
-                text-sm
-                font-medium
+          text-xs
+          font-medium
 
-                transition-all
-                duration-200
+          transition-all
+          duration-200
 
-                ${
-                  active
-                    ? `
-                      bg-primary
-                      text-primary-foreground
-                      border-primary
+          ${
+            active
+              ? `
+                bg-primary
+                text-primary-foreground
+                border-primary
 
-                      shadow-lg
-                      shadow-primary/20
-                    `
-                    : `
-                      bg-white
-                      dark:bg-white/[0.03]
+                shadow-md
+                shadow-primary/20
+              `
+              : `
+                bg-white
+                dark:bg-white/[0.03]
 
-                      text-zinc-700
-                      dark:text-zinc-300
+                text-zinc-700
+                dark:text-zinc-300
 
-                      border-zinc-200
-                      dark:border-white/10
+                border-zinc-200
+                dark:border-white/10
 
-                      hover:bg-zinc-100
-                      dark:hover:bg-white/[0.06]
+                hover:bg-zinc-100
+                dark:hover:bg-white/[0.06]
 
-                      hover:border-primary/30
-                    `
-                }
-              `}
+                hover:border-primary/30
+              `
+          }
+        `}
                 >
                   {c.name}
                 </button>
