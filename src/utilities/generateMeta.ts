@@ -24,24 +24,73 @@ export const generateMeta = async (args: {
 }): Promise<Metadata> => {
   const { doc } = args
 
+  const serverUrl = getServerSideURL()
+
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title ? doc?.meta?.title + ' | DP Digital' : 'DP Digital'
+  const title = doc?.meta?.title ? `${doc.meta.title} | DP Digital` : 'DP Digital'
+
+  const description =
+    doc?.meta?.description || 'DP Digital chuyên thiết kế website hiện đại, tối ưu SEO và UI/UX.'
+
+  const slug = typeof doc?.slug === 'string' && doc.slug !== 'home' ? `/${doc.slug}` : ''
+
+  const canonicalURL = `${serverUrl}${slug}`
 
   return {
-    description: doc?.meta?.description,
+    metadataBase: new URL(serverUrl),
+
+    title,
+    description,
+
+    keywords: [
+      'thiết kế website',
+      'seo website',
+      'nextjs',
+      'payload cms',
+      'web development',
+      'DP Digital',
+    ],
+
+    authors: [
+      {
+        name: 'DP Digital',
+      },
+    ],
+
+    creator: 'DP Digital',
+    publisher: 'DP Digital',
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    alternates: {
+      canonical: canonicalURL,
+    },
+
     openGraph: mergeOpenGraph({
-      description: doc?.meta?.description || '',
+      title,
+      description,
+      url: canonicalURL,
+
       images: ogImage
         ? [
             {
               url: ogImage,
+              width: 1200,
+              height: 630,
             },
           ]
         : undefined,
-      title,
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
     }),
-    title,
+
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
   }
 }
