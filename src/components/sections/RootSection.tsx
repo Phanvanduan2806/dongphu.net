@@ -84,17 +84,31 @@ function Label({ children, className, icon = <Sparkles className="h-3.5 w-3.5" /
     </div>
   )
 }
-
-function Title({ children, className }: BaseProps) {
+type TitleProps = BaseProps & {
+  as?: React.ElementType
+}
+function Title({ children, className, as: Tag = 'h2' }: TitleProps) {
   return (
-    <h2
+    <Tag
       className={cn(
-        'mt-5 font-bold leading-tight tracking-tight text-foreground text-xl sm:text-2xl md:text-3xl',
+        `
+          mt-5
+
+          font-bold
+          leading-tight
+          tracking-tight
+
+          text-foreground
+
+          text-xl
+          sm:text-2xl
+          md:text-3xl
+        `,
         className,
       )}
     >
       {children}
-    </h2>
+    </Tag>
   )
 }
 

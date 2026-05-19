@@ -74,9 +74,12 @@ export default function ProjectPageClient({ initialData }: Props) {
       {/* ================= HEADER ================= */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-6 gap-4">
         <Section.Intro>
+          <Section.Title as="h1" className="sr-only">
+            Dự án
+          </Section.Title>
           <Section.Label>Showcase</Section.Label>
 
-          <Section.Title>Dự án nổi bật</Section.Title>
+          <Section.Title>Danh sách dự án</Section.Title>
         </Section.Intro>
       </div>
 
@@ -420,7 +423,6 @@ export default function ProjectPageClient({ initialData }: Props) {
           </div>
         </div>
       </div>
-
       {/* ================= GRID ================= */}
       {viewMode === 'grid' ? (
         <>
