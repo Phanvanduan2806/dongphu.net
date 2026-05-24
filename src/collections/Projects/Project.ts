@@ -117,6 +117,16 @@ export const Project: CollectionConfig<'projects'> = {
                 position: 'sidebar',
               },
             },
+
+            {
+              name: 'tier',
+              type: 'relationship',
+              relationTo: 'project-tiers',
+              label: 'Gói dự án',
+              admin: {
+                position: 'sidebar',
+              },
+            },
           ],
         },
 

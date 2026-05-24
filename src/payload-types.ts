@@ -74,6 +74,7 @@ export interface Config {
     users: User;
     projects: Project;
     'project-categories': ProjectCategory;
+    'project-tiers': ProjectTier;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -98,6 +99,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'project-categories': ProjectCategoriesSelect<false> | ProjectCategoriesSelect<true>;
+    'project-tiers': ProjectTiersSelect<false> | ProjectTiersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -811,6 +813,7 @@ export interface Project {
     [k: string]: unknown;
   };
   category?: (number | ProjectCategory)[] | null;
+  tier?: (number | null) | ProjectTier;
   meta?: {
     title?: string | null;
     /**
@@ -850,6 +853,21 @@ export interface ProjectCategory {
    */
   slug: string;
   thumbnail?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-tiers".
+ */
+export interface ProjectTier {
+  id: number;
+  name: string;
+  /**
+   * Tự tạo từ tên gói nếu để trống
+   */
+  slug: string;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1070,6 +1088,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'project-categories';
         value: number | ProjectCategory;
+      } | null)
+    | ({
+        relationTo: 'project-tiers';
+        value: number | ProjectTier;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1447,6 +1469,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   category?: T;
+  tier?: T;
   meta?:
     | T
     | {
@@ -1478,6 +1501,17 @@ export interface ProjectCategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   thumbnail?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-tiers_select".
+ */
+export interface ProjectTiersSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

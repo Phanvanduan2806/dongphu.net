@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { toast } from 'sonner'
-
+import { Layers3 } from 'lucide-react'
 import type { Project } from '@/payload-types'
 import { useProjectCard } from '@/hooks/useProjectCard'
 
@@ -39,7 +39,7 @@ export const ProjectCard: React.FC<Props> = ({
   const date = data?.publishedAt
     ? new Date(data.publishedAt).toLocaleDateString('vi-VN')
     : 'update..'
-
+  const tier = data?.tier && typeof data.tier === 'object' ? data.tier : null
   const categories = Array.isArray(data?.category)
     ? data.category
     : data?.category
@@ -115,10 +115,31 @@ export const ProjectCard: React.FC<Props> = ({
 
       {/* ================= FOOTER ================= */}
       <div className="p-2">
-        {/* DATE */}
-        <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2 px-1">
-          <Calendar className="w-4 h-4" />
-          <span>{date}</span>
+        {/* DATE + TIER */}
+        <div className="flex items-center justify-between gap-3 mb-2 px-1">
+          {/* DATE */}
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>{date}</span>
+          </div>
+
+          {/* TIER */}
+          {tier && (
+            <div
+              className="
+    inline-flex items-center gap-1 rounded-full
+    border border-primary/20
+    bg-primary/5
+    px-2 py-0.5
+    text-[11px] font-medium tracking-wide
+    text-primary
+  "
+            >
+              <Layers3 className="h-3 w-3" />
+
+              {tier.name}
+            </div>
+          )}
         </div>
 
         {/* ACTIONS */}
