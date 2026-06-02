@@ -122,7 +122,18 @@ export default async function ProjectDetail({ params }: Props) {
                   </AccordionTrigger>
 
                   <AccordionContent className="pt-4">
-                    <div className="rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                    <div
+                      className="
+      h-[60vh]
+      overflow-y-scroll
+      rounded-xl
+      border border-zinc-200 dark:border-zinc-800
+
+      [scrollbar-width:none]
+      [-ms-overflow-style:none]
+      [&::-webkit-scrollbar]:hidden
+    "
+                    >
                       <Media resource={item.image} size="100vw" />
                     </div>
                   </AccordionContent>
